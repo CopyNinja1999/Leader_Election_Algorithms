@@ -34,8 +34,10 @@ Produce an array of unique id in clockwise/counterclockwise order. The size of t
 Type LCR( makeNodeRing(100)); in the main method, which will test the LCR algorithm in size equals 100, and the output goes like the following:
 
 4. Example output:
+
 the array length is 10
 ----------round 1----------
+
 number# uid# mid# inid# status
 0     # 7  # 7  # 1  # unknown
 1     # 5  # 5  # 7  # unknown
@@ -48,6 +50,7 @@ number# uid# mid# inid# status
 8     # 6  # 6  # 9  # unknown
 9     # 1  # 1  # 6  # unknown
 ----------round 2----------
+
 number# uid# mid# inid# status
 0     # 7  # 7  # 1  # unknown
 1     # 5  # 7  # 7  # unknown
@@ -60,6 +63,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # unknown
 9     # 1  # 6  # 6  # unknown
 ----------round 3----------
+
 number# uid# mid# inid# status
 0     # 7  # 7  # 6  # unknown
 1     # 5  # 7  # 7  # unknown
@@ -72,6 +76,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # unknown
 9     # 1  # 9  # 9  # unknown
 ----------round 4----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # unknown
 1     # 5  # 7  # 7  # unknown
@@ -84,6 +89,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # unknown
 9     # 1  # 9  # 9  # unknown
 ----------round 5----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # unknown
 1     # 5  # 9  # 9  # unknown
@@ -96,6 +102,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # unknown
 9     # 1  # 9  # 9  # unknown
 ----------round 6----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # unknown
 1     # 5  # 9  # 9  # unknown
@@ -108,6 +115,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # unknown
 9     # 1  # 9  # 9  # unknown
 ----------round 7----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # unknown
 1     # 5  # 9  # 9  # unknown
@@ -120,6 +128,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # unknown
 9     # 1  # 9  # 9  # unknown
 ----------round 8----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # unknown
 1     # 5  # 9  # 9  # unknown
@@ -132,6 +141,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # unknown
 9     # 1  # 9  # 9  # unknown
 ----------round 9----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # unknown
 1     # 5  # 9  # 9  # unknown
@@ -144,6 +154,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # unknown
 9     # 1  # 9  # 9  # unknown
 ----------round 10----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # unknown
 1     # 5  # 9  # 9  # unknown
@@ -156,6 +167,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # unknown
 9     # 1  # 9  # 9  # unknown
 ----------round 11----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # unknown
 1     # 5  # 9  # 9  # unknown
@@ -170,6 +182,7 @@ in round 11 the 8th node with unique id 9 is elected as leader
 9     # 1  # 9  # 9  # unknown
 After 11 rounds, the leader is elected
 ----------round 11----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # unknown
 1     # 5  # 9  # 9  # unknown
@@ -182,6 +195,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # terminated
 9     # 1  # 9  # 9  # unknown
 ----------round 12----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # unknown
 1     # 5  # 9  # 9  # unknown
@@ -194,6 +208,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # terminated
 9     # 1  # 9  # 9  # terminated
 ----------round 13----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # terminated
 1     # 5  # 9  # 9  # unknown
@@ -206,6 +221,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # terminated
 9     # 1  # 9  # 9  # terminated
 ----------round 14----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # terminated
 1     # 5  # 9  # 9  # terminated
@@ -218,6 +234,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # terminated
 9     # 1  # 9  # 9  # terminated
 ----------round 15----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # terminated
 1     # 5  # 9  # 9  # terminated
@@ -230,6 +247,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # terminated
 9     # 1  # 9  # 9  # terminated
 ----------round 16----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # terminated
 1     # 5  # 9  # 9  # terminated
@@ -242,6 +260,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # terminated
 9     # 1  # 9  # 9  # terminated
 ----------round 17----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # terminated
 1     # 5  # 9  # 9  # terminated
@@ -254,6 +273,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # terminated
 9     # 1  # 9  # 9  # terminated
 ----------round 18----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # terminated
 1     # 5  # 9  # 9  # terminated
@@ -265,6 +285,7 @@ number# uid# mid# inid# status
 7     # 9  # 9  # 9  # leader
 8     # 6  # 9  # 9  # terminated
 9     # 1  # 9  # 9  # terminated
+
 ----------round 19----------
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # terminated
@@ -278,6 +299,7 @@ number# uid# mid# inid# status
 8     # 6  # 9  # 9  # terminated
 9     # 1  # 9  # 9  # terminated
 ----------round 20----------
+
 number# uid# mid# inid# status
 0     # 7  # 9  # 9  # terminated
 1     # 5  # 9  # 9  # terminated
@@ -286,7 +308,9 @@ number# uid# mid# inid# status
 4     # 8  # 9  # 9  # terminated
 5     # 2  # 9  # 9  # terminated
 6     # 4  # 9  # 9  # terminated
+
 ###################################result###########################################
+
 in round 11 the node with unique id 9 is elected as leader
 After 20 round, all nodes are terminated. There are 208 messages in total.
 
