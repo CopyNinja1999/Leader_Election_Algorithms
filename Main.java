@@ -1,23 +1,16 @@
+package com.mycompany.distributedsystemlab;
+
+
 import java.util.LinkedList;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Administrator
- */
 public class Main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       LCR( makeNodeRing(10));
-        
+     LCR( makeNodeRing(5));
+//        randomInts(20);
 //LCRTest(10);
 //HSTest(10);
     }
@@ -29,9 +22,9 @@ public class Main {
        HS(makeNodeRing(size));}
   public static node[] makeNodeRing(int size) {
     node[] arrayOfNode = new node[size];//set up number=size nodes
-    int[] arrayOfInt = randomInts(arrayOfNode.length);
+    int[] arrayOfInt = CorderedInts(arrayOfNode.length);
 //create a set of distinct integers
-// if you wish to make it clockwise or counterclockwise ordered, replace the randomInt as CorderedInts or orderedInts
+// if you wish to make it clockwise or counterclockwise ordered, replace the randomInts as CorderedInts or orderedInts
     Message[] arrayOfMessage=new Message[arrayOfNode.length];
     
     int b;
@@ -41,7 +34,6 @@ public class Main {
         arrayOfNode[b]=new node(arrayOfInt[b]);
         arrayOfMessage[b]=new Message(arrayOfNode[b].GetID());
     arrayOfNode[b].SetMessage(arrayOfMessage[b]);
-    //System.out.println(arrayOfMessage[b].MShowInfo(false));
     }//the first node must be pre-defined
         
         for(b=0;b <= arrayOfNode.length - 1; b++)
@@ -68,22 +60,22 @@ public class Main {
   int round=1;
   int mcount=0;//TODO:complete the messages counting step
   while(leaderflag==false){ 
-      System.out.println("----------round "+ round+"----------");//10 dashes each
-      System.out.println("number# uid# mid# inid# status");
+//      System.out.println("----------round "+ round+"----------");//10 dashes each
+//      System.out.println("number# uid# mid# inid# status");
       int c=0;
-      for (c = 0; c <= arrayOfNode.length - 1; c++){mcount++;
+      for (c = 0; c <= arrayOfNode.length - 1; c++){
           
       if(c==arrayOfNode.length-1){
          
       if(arrayOfNode[arrayOfNode.length - 1].GetStatus()=="leader"){
-          System.out.println("in round "+round+ " the last node whith unique id "+arrayOfNode[0].GetID() +"is elected as leader");
+//          System.out.println("in round "+round+ " the last node whith unique id "+arrayOfNode[0].GetID() +"is elected as leader");
           leaderflag=true;
          
       }}//in the case of out of boundry exception
       else if(c==0){arrayOfNode[arrayOfNode.length-1].LCRAlgorithm(round);
       arrayOfNode[0].LCRAlgorithm(round);
       if(arrayOfNode[0].GetStatus()=="leader"){
-      System.out.println("in round "+round+" the first node whith unique id "+arrayOfNode[0].GetID() +"is elected as leader");
+      System.out.println("in round "+round+" the first node whith unique id "+arrayOfNode[0].GetID() +" is elected as leader");
           leaderflag=true;
       }}                                        //In order to print the first incoming message, the last node should be excuted firstly in a for loop
       else{
@@ -94,7 +86,7 @@ public class Main {
           System.out.println("in round "+round+" the "+(c+1)+"th node with unique id "+arrayOfNode[c].GetID() +" is elected as leader");
           }
       }
-      System.out.println(c+"     # "+arrayOfNode[c].getInfo());
+//      System.out.println(c+"     # "+arrayOfNode[c].getInfo());
   }
      for(int b=0;b<= arrayOfNode.length - 1;b++){arrayOfNode[b].send();} 
  round++;
@@ -102,11 +94,16 @@ public class Main {
   
   }
   round-=1;//
+     for(int c=0;c<arrayOfNode.length;c++){
+       System.out.println(arrayOfNode[c].GetMessage().GetMcount());
+       mcount+=arrayOfNode[c].GetMessage().GetMcount();}
+//     mcount+=arrayOfNode.length;//in round 1 every node send a message
+  int Fmcount=mcount;
   int Fround=round;
   System.out.println("After "+round+" rounds, the leader is elected");// which should be n-1 round
 while(Tflag==false){ 
-      System.out.println("----------round "+ round+"----------");//10 dashes each
-      System.out.println("number# uid# mid# inid# status");
+//      System.out.println("----------round "+ round+"----------");//10 dashes each
+//      System.out.println("number# uid# mid# inid# status");
       int c=0;
       for (c = 0; c <= arrayOfNode.length - 1; c++){
      arrayOfNode[c].sendS();
@@ -118,13 +115,14 @@ while(Tflag==false){
      if(arrayOfNode[c].Termination()){
          
      break;} 
-     System.out.println(c+"     # "+arrayOfNode[c].getInfo());
+//     System.out.println(c+"     # "+arrayOfNode[c].getInfo());
        }   
    
     round++;
 }
 System.out.println("###################################result###########################################");
-System.out.println("in round "+Fround+" the node with unique id "+ (arrayOfNode.length-1) +" is elected as leader");
+System.out.println("in round "+Fround+" the node with unique id "+ (arrayOfNode.length-1) +" is elected as leader. There are "+Fmcount+" messages currently");
+
 System.out.println("After "+(round-1)+" round, all nodes are terminated. There are "+mcount+" messages in total.");
   return arrayOfNode;
   }
@@ -136,7 +134,7 @@ System.out.println("After "+(round-1)+" round, all nodes are terminated. There a
   
   while(!leaderflag){
   
-   if(phase==1){ 
+   if(phase==0){ 
        System.out.println("----------phase"+ phase+"----------");
   for(int a=0;a<=arrayOfNode.length-1;a++){
     arrayOfNode[a].HSAlogorithm();
@@ -152,7 +150,7 @@ System.out.println("After "+(round-1)+" round, all nodes are terminated. There a
 //        if((int)Math.pow(2, (phase+2))<=arrayOfNode.length){mcount+=(int)Math.pow(2, (phase+2));}
 //        else{mcount+=arrayOfNode.length;}
         if(arrayOfNode[a].GetStatus()=="leader"){
-
+round+=arrayOfNode[a].GetMessage().GetMcount()/2;
       leaderflag=true;
         
         }
@@ -163,28 +161,44 @@ System.out.println("After "+(round-1)+" round, all nodes are terminated. There a
    phase++;
  
   }  
-  for(int d=0;d<phase;d++)
-  {round+=(int)Math.pow(2, d);}
-  round+=2*arrayOfNode.length;
   System.out.println("----------phase "+ phase+"----------");
+  
    for(int c=0;c<arrayOfNode.length;c++){
    System.out.println("Node "+arrayOfNode[c].GetID()+" is now terminated");
 
    }
-   for(int c=0;c<arrayOfNode.length;c++){mcount+=arrayOfNode[c].GetMessage().GetMcount();}
-   System.out.println("in round "+ round +" every node is terminated");
+   for(int c=0;c<arrayOfNode.length;c++){
+      // System.out.println(arrayOfNode[c].GetMessage().GetMcount());
+       mcount+=arrayOfNode[c].GetMessage().GetMcount();}
+   System.out.println("in round "+ round +", the leader is elected");
    System.out.println("There are "+ mcount + " messages in total");
+   System.out.println("The final phase is" + phase);
   return arrayOfNode;}
+public static int[] randomInts(int paramInt) {
+int[] arrayOfInt = new int[paramInt]; // arrayOfInt is an array of random integers
+for (int m = 0; m < paramInt; m++) { // m=number of the created integers
+int temp = (int)(paramInt*Math.random()+1);
+if (m == 0)
+arrayOfInt[0] = temp;
+else {
+for (int n = 0; n < m; n++) { // tranversal the created random number
+if (temp == arrayOfInt[n]) {
+temp = (int)(paramInt*Math.random()+1);
+n = -1;}}
+arrayOfInt[m] = temp;}
+}
+return arrayOfInt;
+}
 
- public static int[] randomInts(int paramInt) {
-    LinkedList<Integer> linkedList = new LinkedList();
-    for (byte b1 = 0; b1 < paramInt; b1++)
-      linkedList.add(Integer.valueOf(b1)); 
-    int[] arrayOfInt = new int[paramInt];
-    for (byte b2 = 0; b2 < paramInt; b2++)
-      arrayOfInt[b2] = ((Integer)linkedList.remove((int)(Math.random() * linkedList.size()))).intValue(); 
-    return arrayOfInt;
-  }
+// public static int[] randomInts(int paramInt) {
+//    LinkedList<Integer> linkedList = new LinkedList();
+//    for (byte b1 = 0; b1 < paramInt; b1++)
+//      linkedList.add(Integer.valueOf(b1)); 
+//    int[] arrayOfInt = new int[paramInt];
+//    for (byte b2 = 0; b2 < paramInt; b2++)
+//      arrayOfInt[b2] = ((Integer)linkedList.remove((int)(Math.random() * linkedList.size()))).intValue(); 
+//    return arrayOfInt;
+//  }
  public static int[] orderedInts (int paramInt){
  int[] arrayOfInt = new int[paramInt];
  for(int b=0;b<paramInt;b++)
@@ -200,6 +214,6 @@ System.out.println("After "+(round-1)+" round, all nodes are terminated. There a
  return arrayOfInt;
  }
  
-}
 
+}
  
