@@ -1,3 +1,5 @@
+package com.mycompany.distributedsystemlab;
+
 /**
  *
  * @author Zheyu.Zhang
@@ -56,19 +58,22 @@ return false;}
 
 public void LCRAlgorithm(int Theround){
     
-    if(Theround==1){send();}//in round 1, every node send message to clockwise neighbour
+    if(Theround==1){send();
+    message.SetMcount();}//in round 1, every node send message to clockwise neighbour
     else{
 if(inid>mid){
     
 
 SetID(inid);
+message.SetMcount();//only the node with greater uid send message 
 }
 else if(inid==uid){LeaderElected();
+
 }
 
 //if the incoming ID is less than existing id, nothing would happen
 }}
-public void ScTeriminate(){}
+
 public void sendclockwise(Message in_M){
     in_M.SetMcount();
     if(in_M.GetCCWF() & in_M.GetInid()!=nnode.GetID()){
@@ -90,6 +95,7 @@ public void sendclockwise(Message in_M){
     else if(in_M.GetInid()==nnode.GetID()){
     nnode.LeaderElected();
     }
+    //do nothing
 //    System.out.println(in_M.MShowInfo(in_M.GetCWF()));
     }}
 
@@ -113,8 +119,10 @@ public void sendcounterclockwise(Message in_M){
     }//TODO 
     else if(in_M.GetInid()==fnode.GetID()){
     fnode.LeaderElected();
+    
     //if the incoming id<myid, the message is lost
-    }}
+    }
+ }
 
 
 }
@@ -160,3 +168,4 @@ public String getInfo(){
 return uid+"  # "+mid+"  # "+inid+"  # "+status ;
 }
 }
+
